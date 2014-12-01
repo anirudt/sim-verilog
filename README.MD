@@ -11,7 +11,7 @@ The build instructions will be updated shortly.
 
 2. '#' marks within the tester module depict the number of seconds given as gap till the next input instruction.
 
-3. 'begin' and 'end' denote the beginning and the end of structures, much like {} in any other programming language.
+3. ```begin``` and ```end``` denote the beginning and the end of structures, much like ```{}``` in any other programming language.
 
 4. The ```begin``` and ```end``` are not required if the structure block consists of only one line of code.
 
