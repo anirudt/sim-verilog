@@ -50,49 +50,11 @@ module stimulus();
 	begin
 		clk=1'b0;
 	
-	
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-
-		#5 clk=~clk;#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
-		#5 clk=~clk;
+	end
+	always
+	begin
 		#5 clk=~clk;
 	end
-
 	initial 
 	begin
 		a=4'b0000;
