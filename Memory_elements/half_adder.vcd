@@ -1,0 +1,132 @@
+$date
+	Mon Dec 01 23:26:11 2014
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module stimulus $end
+$var wire 1 ! c_out $end
+$var wire 1 " sum $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$var reg 1 % c_in $end
+$var reg 1 & clk $end
+$scope module test $end
+$var wire 1 ' a $end
+$var wire 1 ( b $end
+$var wire 1 ) c_in $end
+$var wire 1 * clk $end
+$var reg 1 + c_out $end
+$var reg 1 , sum $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1,
+0+
+0*
+1)
+0(
+0'
+0&
+1%
+0$
+0#
+1"
+0!
+$end
+#5
+0%
+0)
+1#
+1'
+1&
+1*
+#10
+0&
+0*
+#15
+1&
+1*
+#20
+0&
+0*
+#25
+1&
+1*
+1$
+1(
+0#
+0'
+#30
+0&
+0*
+#35
+1&
+1*
+#40
+0&
+0*
+#45
+1&
+1*
+#50
+0&
+0*
+#55
+1&
+1*
+#60
+0&
+0*
+#65
+1&
+1*
+1#
+1'
+#70
+1+
+1!
+0,
+0"
+0&
+0*
+#75
+1&
+1*
+#80
+0&
+0*
+#85
+1&
+1*
+#90
+0&
+0*
+#95
+1&
+1*
+#100
+0&
+0*
+#105
+1&
+1*
+#110
+0&
+0*
+#115
+1&
+1*
+#120
+0&
+0*
+#125
+1&
+1*
+1%
+1)
