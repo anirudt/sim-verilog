@@ -9,14 +9,14 @@ This was developed in Windows 8, 64-bit machine.
 
 #Build Instructions
 
--Download the Icarus Verilog software from the original sote. It is completely open source under the GNU License.
+- Download the Icarus Verilog software from the original sote. It is completely open source under the GNU License.
 
--Go to the working directory and type the following command in DOS as a batch file.     ```iverilog -o file_name file_name.v```
+- Go to the working directory and type the following command in DOS as a batch file.     ```iverilog -o file_name file_name.v```
 
 
 - Then, type ```vvp file_name```
 
--Then, type ```GTKWave``` and follow the usual pratice of running the simulation.
+- Then, type ```GTKWave``` and follow the usual pratice of running the simulation.
 
 #Verilog Tips
 1. Within the begin block, the variables to be updated towards the RHS will remain the same till the entire begin is executed. That is, to say, the entire begin block is interpreted as a whole.
