@@ -37,3 +37,23 @@ module dff1(q,d,clk,reset)
 	
 endmodule
 
+module stimulus;
+	reg clk;
+	reg reset;
+	wire [3:0] q;
+
+	//instantiate the main block first, which further contains the sub blocks
+
+	//setting the clock reference
+	initial
+	begin
+		clk=1'b0;
+	end
+	always
+	begin
+		#5 clk=~clk;
+	end
+
+	
+
+
