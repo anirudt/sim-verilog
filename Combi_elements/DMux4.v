@@ -2,22 +2,33 @@ module DMux4(in,sel,clk,a,b,c,d);
 	input in,clk;
 	input [1:0] sel;
 	//Assuming that sel[2] is the MSB, and sel[0] is the LSB
-	output a,b,c,d;
+	output reg a,b,c,d;
 	reg p1,p2,p3,p4;
 	
-	if(sel[2]==1'b0)
+	always @(posedge(clk))
 	begin
-		DMux t1(in,sel[1],clk,a,b);
-	end
-		
-	else 
+	if(sel==2'b00)
 	begin
-		DMux t2(in,sel[1],clk,c,d);
+		a<=in;
+		b=0;c=0;d=0;
 	end
-		
+	if(sel==2'b01)
+	begin
+		b=in;
+		a=0;c=0;d=0;
+	end
+	if(sel==2'b10)
+	begin
+		c=in;
+		b=0;a=0;d=0;
+	end
+	if(sel==2'b11)
+	begin
+		d=in;
+		b=0;c=0;a=0;
+	end	
 	
-	
-	
+	end
 	
 endmodule
 
