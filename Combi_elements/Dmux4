@@ -1,0 +1,130 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_002EDB70 .scope module, "stimulus" "stimulus" 2 38;
+ .timescale 0 0;
+v002EB630_0 .net "a", 0 0, C4<z>; 0 drivers
+v002EB688_0 .net "b", 0 0, C4<z>; 0 drivers
+v002EB6E0_0 .net "c", 0 0, v00792260_0; 1 drivers
+v002EB738_0 .var "clk", 0 0;
+v002EB790_0 .net "d", 0 0, v002E4478_0; 1 drivers
+v0078F940_0 .var "in", 0 0;
+v0078F8E8_0 .var "sel", 1 0;
+S_002EDBF8 .scope module, "tester" "DMux4" 2 44, 2 1, S_002EDB70;
+ .timescale 0 0;
+v002E4528_0 .alias "a", 0 0, v002EB630_0;
+v002E1608_0 .alias "b", 0 0, v002EB688_0;
+v002E1660_0 .alias "c", 0 0, v002EB6E0_0;
+v002E16B8_0 .net "clk", 0 0, v002EB738_0; 1 drivers
+v002E1710_0 .alias "d", 0 0, v002EB790_0;
+v002EB580_0 .net "in", 0 0, v0078F940_0; 1 drivers
+v002EB5D8_0 .net "sel", 1 0, v0078F8E8_0; 1 drivers
+L_0078FFC8 .part v0078F8E8_0, 1, 1;
+S_002EE478 .scope generate, "genblk2" "genblk2" 2 8, 2 8, S_002EDBF8;
+ .timescale 0 0;
+S_002EDEA0 .scope module, "t2" "DMux" 2 15, 2 26, S_002EE478;
+ .timescale 0 0;
+v007921B0_0 .alias "clk", 0 0, v002E16B8_0;
+v00792208_0 .alias "in", 0 0, v002EB580_0;
+v00792260_0 .var "p", 0 0;
+v002E4478_0 .var "q", 0 0;
+v002E44D0_0 .net "sel", 0 0, L_0078FFC8; 1 drivers
+E_002E7AF0 .event posedge, v007921B0_0;
+    .scope S_002EDEA0;
+T_0 ;
+    %set/v v00792260_0, 0, 1;
+    %set/v v002E4478_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_002EDEA0;
+T_1 ;
+    %wait E_002E7AF0;
+    %load/v 8, v002E44D0_0, 1;
+    %jmp/0  T_1.0, 8;
+    %mov 9, 0, 1;
+    %jmp/1  T_1.2, 8;
+T_1.0 ; End of true expr.
+    %load/v 10, v00792208_0, 1;
+    %jmp/0  T_1.1, 8;
+ ; End of false expr.
+    %blend  9, 10, 1; Condition unknown.
+    %jmp  T_1.2;
+T_1.1 ;
+    %mov 9, 10, 1; Return false value
+T_1.2 ;
+    %set/v v00792260_0, 9, 1;
+    %load/v 8, v002E44D0_0, 1;
+    %jmp/0  T_1.3, 8;
+    %load/v 9, v00792208_0, 1;
+    %jmp/1  T_1.5, 8;
+T_1.3 ; End of true expr.
+    %jmp/0  T_1.4, 8;
+ ; End of false expr.
+    %blend  9, 0, 1; Condition unknown.
+    %jmp  T_1.5;
+T_1.4 ;
+    %mov 9, 0, 1; Return false value
+T_1.5 ;
+    %set/v v002E4478_0, 9, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_002EDB70;
+T_2 ;
+    %vpi_call 2 48 "$dumpfile", "DMux4.vcd";
+    %vpi_call 2 49 "$dumpvars";
+    %end;
+    .thread T_2;
+    .scope S_002EDB70;
+T_3 ;
+    %set/v v002EB738_0, 0, 1;
+    %end;
+    .thread T_3;
+    .scope S_002EDB70;
+T_4 ;
+    %delay 5, 0;
+    %load/v 8, v002EB738_0, 1;
+    %inv 8, 1;
+    %set/v v002EB738_0, 8, 1;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_002EDB70;
+T_5 ;
+    %set/v v0078F940_0, 1, 1;
+    %set/v v0078F8E8_0, 0, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 0, 1;
+    %set/v v0078F8E8_0, 0, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 1, 1;
+    %movi 8, 1, 2;
+    %set/v v0078F8E8_0, 8, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 0, 1;
+    %movi 8, 1, 2;
+    %set/v v0078F8E8_0, 8, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 1, 1;
+    %movi 8, 2, 2;
+    %set/v v0078F8E8_0, 8, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 0, 1;
+    %movi 8, 2, 2;
+    %set/v v0078F8E8_0, 8, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 1, 1;
+    %set/v v0078F8E8_0, 1, 2;
+    %delay 10, 0;
+    %set/v v0078F940_0, 0, 1;
+    %set/v v0078F8E8_0, 1, 2;
+    %delay 10, 0;
+    %vpi_call 2 71 "$finish";
+    %end;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "dmux4.v";

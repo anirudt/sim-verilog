@@ -1,0 +1,138 @@
+$date
+	Tue Dec 02 15:14:28 2014
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module stimulus $end
+$var wire 1 ! a $end
+$var wire 1 " b $end
+$var wire 1 # c $end
+$var wire 1 $ d $end
+$var reg 1 % clk $end
+$var reg 1 & in $end
+$var reg 2 ' sel [1:0] $end
+$scope module tester $end
+$var wire 1 ! a $end
+$var wire 1 " b $end
+$var wire 1 # c $end
+$var wire 1 ( clk $end
+$var wire 1 $ d $end
+$var wire 1 ) in $end
+$var wire 2 * sel [1:0] $end
+$scope begin genblk2 $end
+$scope module t2 $end
+$var wire 1 ( clk $end
+$var wire 1 ) in $end
+$var wire 1 + sel $end
+$var reg 1 , p $end
+$var reg 1 - q $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0-
+0,
+0+
+b0 *
+1)
+0(
+b0 '
+1&
+0%
+0$
+0#
+z"
+z!
+$end
+#5
+1,
+1#
+1%
+1(
+#10
+0%
+0(
+0&
+0)
+#15
+0,
+0#
+1%
+1(
+#20
+0%
+0(
+b1 '
+b1 *
+1&
+1)
+#25
+1,
+1#
+1%
+1(
+#30
+0%
+0(
+0&
+0)
+#35
+0,
+0#
+1%
+1(
+#40
+1+
+0%
+0(
+b10 '
+b10 *
+1&
+1)
+#45
+1-
+1$
+1%
+1(
+#50
+0%
+0(
+0&
+0)
+#55
+0-
+0$
+1%
+1(
+#60
+0%
+0(
+b11 '
+b11 *
+1&
+1)
+#65
+1-
+1$
+1%
+1(
+#70
+0%
+0(
+0&
+0)
+#75
+0-
+0$
+1%
+1(
+#80
+0%
+0(

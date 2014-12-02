@@ -1,0 +1,93 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00B31670 .scope module, "stimulus" "stimulus" 2 12;
+ .timescale 0 0;
+v005C4F58_0 .net "a", 0 0, v00B316F8_0; 1 drivers
+v00B3ED20_0 .net "b", 0 0, v00B33E00_0; 1 drivers
+v00B3ED78_0 .var "clk", 0 0;
+v00B3EDD0_0 .var "in", 0 0;
+v00B3EE28_0 .var "sel", 0 0;
+S_00B33D78 .scope module, "t1" "DMux" 2 17, 2 1, S_00B31670;
+ .timescale 0 0;
+v00B316F8_0 .var "a", 0 0;
+v00B33E00_0 .var "b", 0 0;
+v00B33E58_0 .net "clk", 0 0, v00B3ED78_0; 1 drivers
+v005C4EA8_0 .net "in", 0 0, v00B3EDD0_0; 1 drivers
+v005C4F00_0 .net "sel", 0 0, v00B3EE28_0; 1 drivers
+E_005A18E8 .event posedge, v00B33E58_0;
+    .scope S_00B33D78;
+T_0 ;
+    %wait E_005A18E8;
+    %load/v 8, v005C4F00_0, 1;
+    %jmp/0  T_0.0, 8;
+    %mov 9, 0, 1;
+    %jmp/1  T_0.2, 8;
+T_0.0 ; End of true expr.
+    %load/v 10, v005C4EA8_0, 1;
+    %jmp/0  T_0.1, 8;
+ ; End of false expr.
+    %blend  9, 10, 1; Condition unknown.
+    %jmp  T_0.2;
+T_0.1 ;
+    %mov 9, 10, 1; Return false value
+T_0.2 ;
+    %set/v v00B316F8_0, 9, 1;
+    %load/v 8, v005C4F00_0, 1;
+    %jmp/0  T_0.3, 8;
+    %load/v 9, v005C4EA8_0, 1;
+    %jmp/1  T_0.5, 8;
+T_0.3 ; End of true expr.
+    %jmp/0  T_0.4, 8;
+ ; End of false expr.
+    %blend  9, 0, 1; Condition unknown.
+    %jmp  T_0.5;
+T_0.4 ;
+    %mov 9, 0, 1; Return false value
+T_0.5 ;
+    %set/v v00B33E00_0, 9, 1;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_00B31670;
+T_1 ;
+    %vpi_call 2 21 "$dumpfile", "DMux.vcd";
+    %vpi_call 2 22 "$dumpvars";
+    %end;
+    .thread T_1;
+    .scope S_00B31670;
+T_2 ;
+    %set/v v00B3ED78_0, 0, 1;
+    %end;
+    .thread T_2;
+    .scope S_00B31670;
+T_3 ;
+    %delay 5, 0;
+    %load/v 8, v00B3ED78_0, 1;
+    %inv 8, 1;
+    %set/v v00B3ED78_0, 8, 1;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_00B31670;
+T_4 ;
+    %set/v v00B3EDD0_0, 0, 1;
+    %set/v v00B3EE28_0, 0, 1;
+    %delay 40, 0;
+    %set/v v00B3EDD0_0, 0, 1;
+    %set/v v00B3EE28_0, 1, 1;
+    %delay 40, 0;
+    %set/v v00B3EDD0_0, 1, 1;
+    %set/v v00B3EE28_0, 1, 1;
+    %delay 40, 0;
+    %set/v v00B3EDD0_0, 1, 1;
+    %set/v v00B3EE28_0, 0, 1;
+    %vpi_call 2 40 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "DMux.v";
