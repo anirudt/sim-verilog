@@ -1,7 +1,7 @@
 module DMux4(in,sel,clk,a,b,c,d);
 	input in,clk;
 	input [1:0] sel;
-	//Assuming that sel[2] is the MSB, and sel[0] is the LSB
+	//Assuming that sel[1] is the MSB, and sel[0] is the LSB
 	output reg a,b,c,d;
 	reg p1,p2,p3,p4;
 	
