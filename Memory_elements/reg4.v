@@ -16,7 +16,7 @@ module reg4(in,load,clk,reset,out);
 			
 		end
 		else begin
-			
+//			out=buff;
 		end
 	end
 endmodule
@@ -74,11 +74,11 @@ module tester();
 	end
 	initial
 	begin
-		in=4'b0000;load=0;
+		in=4'b0010;load=0;
 		in=4'b0000;load=1;
 		
 		#5 in=4'b0010;load=0;
-		#5 in=4'b0010;load=1;
+		#5 in=4'b0011;load=1;
 
 		#20 in=4'b0100;load=0;
 
