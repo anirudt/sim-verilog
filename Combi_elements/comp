@@ -1,0 +1,91 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_007D3EF8 .scope module, "stimulus" "stimulus" 2 15;
+ .timescale 0 0;
+v00830D90_0 .var "a", 0 0;
+v00830DE8_0 .var "b", 0 0;
+v00830E40_0 .var "clk", 0 0;
+v00830E98_0 .net "e", 0 0, v007D16B8_0; 1 drivers
+v00830EF0_0 .net "g", 0 0, v007D1710_0; 1 drivers
+v00830F48_0 .net "l", 0 0, v00830D38_0; 1 drivers
+S_007D8FA8 .scope module, "tester" "comp" 2 25, 2 1, S_007D3EF8;
+ .timescale 0 0;
+v007D3F80_0 .net "a", 0 0, v00830D90_0; 1 drivers
+v007D1608_0 .net "b", 0 0, v00830DE8_0; 1 drivers
+v007D1660_0 .net "clk", 0 0, v00830E40_0; 1 drivers
+v007D16B8_0 .var "e", 0 0;
+v007D1710_0 .var "g", 0 0;
+v00830D38_0 .var "l", 0 0;
+E_007D84B0 .event posedge, v007D1660_0;
+    .scope S_007D8FA8;
+T_0 ;
+    %wait E_007D84B0;
+    %load/v 8, v007D3F80_0, 1;
+    %load/v 9, v007D1608_0, 1;
+    %inv 9, 1;
+    %and 8, 9, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v007D1710_0, 0, 8;
+    %load/v 8, v007D3F80_0, 1;
+    %load/v 9, v007D1608_0, 1;
+    %and 8, 9, 1;
+    %load/v 9, v007D3F80_0, 1;
+    %inv 9, 1;
+    %load/v 10, v007D1608_0, 1;
+    %inv 10, 1;
+    %and 9, 10, 1;
+    %or 8, 9, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v007D16B8_0, 0, 8;
+    %load/v 8, v007D3F80_0, 1;
+    %inv 8, 1;
+    %load/v 9, v007D1608_0, 1;
+    %and 8, 9, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00830D38_0, 0, 8;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_007D3EF8;
+T_1 ;
+    %vpi_call 2 21 "$dumpfile", "comp.vcd";
+    %vpi_call 2 22 "$dumpvars";
+    %end;
+    .thread T_1;
+    .scope S_007D3EF8;
+T_2 ;
+    %set/v v00830E40_0, 0, 1;
+    %end;
+    .thread T_2;
+    .scope S_007D3EF8;
+T_3 ;
+    %delay 5, 0;
+    %load/v 8, v00830E40_0, 1;
+    %inv 8, 1;
+    %set/v v00830E40_0, 8, 1;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_007D3EF8;
+T_4 ;
+    %set/v v00830D90_0, 1, 1;
+    %set/v v00830DE8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00830D90_0, 0, 1;
+    %set/v v00830DE8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00830D90_0, 0, 1;
+    %set/v v00830DE8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00830D90_0, 1, 1;
+    %set/v v00830DE8_0, 1, 1;
+    %vpi_call 2 41 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "comp.v";
