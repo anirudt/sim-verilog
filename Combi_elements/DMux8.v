@@ -5,7 +5,7 @@ module DMux8(in,sel,clk,a,b,c,d,e,f,g,h);
 	reg p1;
 
 	initial begin p1=sel[2]?1:0; end
-	always @(posedge(clk))
+	always @(negedge(clk))
 	begin
 	if(sel==3'b000)
 	begin
@@ -57,7 +57,7 @@ module DMux4(in,sel,clk,a,b,c,d);
 	output reg a,b,c,d;
 	reg p1,p2,p3,p4;
 	
-	always @(posedge(clk))
+	always @(negedge(clk))
 	begin
 	if(sel==2'b00)
 	begin

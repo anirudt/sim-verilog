@@ -2,40 +2,65 @@ module Ram8(in,add,load,reset,clk,out);
 	input load,clk,reset;
 	input [3:0] in;
 	input [2:0] add;
-	output [3:0] out;
-
+	output reg [3:0] out;
+	wire [3:0] out1,out2,out3,out4,out5,out6,out7,out8;
+	
 	wire loada,loadb,loadc,loadd,loade,loadf,loadg,loadh;
 
+	
+
 	DMux8 t1(load,add,clk,loada,loadb,loadc,loadd,loade,loadf,loadg,loadh);
-	reg4 t2(in,loada,clk,reset,out);
-	reg4 t3(in,loadb,clk,reset,out);
-	reg4 t4(in,loadc,clk,reset,out);
-	reg4 t5(in,loadd,clk,reset,out);
-	reg4 t6(in,loade,clk,reset,out);
-	reg4 t7(in,loadf,clk,reset,out);
-	reg4 t8(in,loadg,clk,reset,out);
-	reg4 t9(in,loadh,clk,reset,out);
+	reg4 t2(in,loada,clk,reset,out1);
+	reg4 t3(in,loadb,clk,reset,out2);
+	reg4 t4(in,loadc,clk,reset,out3);
+	reg4 t5(in,loadd,clk,reset,out4);
+	reg4 t6(in,loade,clk,reset,out5);
+	reg4 t7(in,loadf,clk,reset,out6);
+	reg4 t8(in,loadg,clk,reset,out7);
+	reg4 t9(in,loadh,clk,reset,out8);
+	always @(posedge(clk))
+	begin
+		if(loada)
+			out<=out1;
+		if(loadb)
+			out<=out2;
+		if(loadc)
+			out<=out3;
+		if(loadd)
+			out<=out4;
+		if(loade)		
+			out<=out5;
+		if(loadf)
+			out<=out6;
+		if(loadg)
+			out<=out7;
+		if(loadh)
+			out<=out8;		
+				
+	end
 endmodule
 
 module reg4(in,load,clk,reset,out);
 	input load,reset,clk;
 	input [3:0] in;
-	output [3:0] out;
-	reg [3:0] buff;
+	output reg [3:0] out;
+	wire [3:0] buff;
 	
-	dff1 t1(out[0],in[0],clk,reset);
-	dff1 t2(out[1],in[1],clk,reset);
-	dff1 t3(out[2],in[2],clk,reset);
-	dff1 t4(out[3],in[3],clk,reset);
-	always @(posedge clk)
+	initial begin out=4'b0000; end
+
+	dff1 t1(buff[0],in[0],clk,reset);
+	dff1 t2(buff[1],in[1],clk,reset);
+	dff1 t3(buff[2],in[2],clk,reset);
+	dff1 t4(buff[3],in[3],clk,reset);
+	always @(negedge(clk))
 	begin
-		buff=out;
+		
 		if(load)
 		begin
-			
+			out<=buff;
 		end
 		else begin
-			
+			out<=out;
 		end
 	end
 endmodule
@@ -46,7 +71,7 @@ module dff1(q,d,clk,reset);
 
 	initial begin q=0; end
 	
-	always @(posedge reset or negedge clk)
+	always @(negedge(clk))
 	begin
 	if(reset)
 	begin
@@ -67,7 +92,7 @@ module DMux8(in,sel,clk,a,b,c,d,e,f,g,h);
 	reg p1;
 
 	initial begin p1=sel[2]?1:0; end
-	always @(posedge(clk))
+	always @(negedge(clk))
 	begin
 	if(sel==3'b000)
 	begin

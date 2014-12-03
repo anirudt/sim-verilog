@@ -1,22 +1,24 @@
 module reg4(in,load,clk,reset,out);
 	input load,reset,clk;
 	input [3:0] in;
-	output [3:0] out;
-	reg [3:0] buff;
+	output reg [3:0] out;
+	wire [3:0] buff;
 	
-	dff1 t1(out[0],in[0],clk,reset);
-	dff1 t2(out[1],in[1],clk,reset);
-	dff1 t3(out[2],in[2],clk,reset);
-	dff1 t4(out[3],in[3],clk,reset);
-	always @(posedge clk)
+	initial begin out=4'b0000; end
+
+	dff1 t1(buff[0],in[0],clk,reset);
+	dff1 t2(buff[1],in[1],clk,reset);
+	dff1 t3(buff[2],in[2],clk,reset);
+	dff1 t4(buff[3],in[3],clk,reset);
+	always @(posedge(clk))
 	begin
-		buff=out;
+		
 		if(load)
 		begin
-			
+			out<=buff;
 		end
 		else begin
-//			out=buff;
+			out<=out;
 		end
 	end
 endmodule
@@ -27,7 +29,7 @@ module dff1(q,d,clk,reset);
 
 	initial begin q=0; end
 	
-	always @(posedge reset or negedge clk)
+	always @(posedge(clk))
 	begin
 	if(reset)
 	begin
@@ -52,7 +54,7 @@ module tester();
 		$dumpvars;
 	end
 
-	reg4 t1(in,load,clk,reset,out);
+	reg4 tester(in,load,clk,reset,out);
 
 	initial 
 	begin
@@ -85,6 +87,11 @@ module tester();
 		#40 in=4'b0000;load=1;
 		#60 in=4'b0001;load=1;
 		
+	end
+
+	initial
+	begin
+		$monitor($time,"Testing variables in %b", tester.out);
 	end
 
 endmodule
